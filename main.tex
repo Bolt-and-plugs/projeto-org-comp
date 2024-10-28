@@ -89,10 +89,29 @@ Os chips da série M empregam uma arquitetura heterogênea de múltiplos núcleo
 Uma das inovações fundamentais dessa arquitetura é o conceito de memória unificada. Diferente dos designs tradicionais, nos quais CPU e GPU utilizam memórias separadas, a arquitetura dos chips M permite que todos os processadores acessem a mesma memória física. Isso reduz a necessidade de cópias redundantes de dados e melhora a comunicação entre CPU e GPU, resultando em um desempenho mais eficiente e menores tempos de resposta. Tal memória unificada também conta com uma largura de banda de 68.25 GB/s para o processador M1, podendo chegar até 400 GB/s para o M1 Max.
 
 \hspace{+15pt}
-
 \section{Desempenho}
+
+A série M da Apple Silicon, devido a sua eficiência energética, alto desempenho e arquitetura \textit{System on a Chip (SoC)}, revolucionou o mercado. O processador \textbf{M1} e seus sucessores trouxeram avanços significativos quando comparados a processadores baseados na arquitetura x86 e similares usados em notebooks.
+
+\subsection{Apple M1 vs Intel (x86)}
 \hspace{+15pt}
 
+O \textit{SoC} Apple M1 trouxe uma mudança de paradigmo no setor de processadores na época de seu lançamente ao superar diversos processador x86 da Intel, antes usados em dispositivos da Apple, em especial na eficiência energética e gerenciamento de calor. construído baseado na arquitetura ARM, com oito núcleos divididos em quatro de alto desempenho e quatro de alta eficiência, o M1 foi capaz de superar laptops com Intel Core i7 e i9.
+
+Uma das vantagens da série M é o uso de \textbf{memória unificada} em sua arquitetura, o que permite que processador e GPU entre outros componentesacessem a mesma pool de memória sem a necessidade de realizar a tranferência de dados entre os mesmos.\cite{apple_silicon_potential} Esse design melhora significativamente o desempenho em algoritmos que envolvam grande movimentação de dados.\cite{apple_m_vs_intel}
+
+\subsection{Apple M2: A Evolução do M1}
+\hspace{+15pt}
+O lançamento do \textbf{M2}, Apple foi capaz de aumentar ainda mais a eficiência e poder de processamento de sua linha de chips. O M2 apresentou um aumento de 40\% em desempenho quando comparado com o seu antecessor M1, possuindo mais núcleos dedidcados à \textbf{GPU (Graphics Processing Unit)} e a \textbf{NPU (Neural Processing Unit)}. Isso tornou, é claro, os notebooks que portavam o M2 uma escolha mais robustas para ãplicações de aprendizado de máquina, por exemplo \cite{usability_ml}. Estudos mostram que o M2 é altamente performático em tarefas de visão computacional e processamento de grande volumes de dados tabulares, chegando a até mesmo rivalizar com GPUs dedicadas da NVIDIA, especialmente em aplicações que não exigem precisão dupla, a qual a série M não possui. Mesmo com GPUs de alto desempenho como \textbf{RTX 3090} ou a \textbf{NVIDIA A100} mantendo a vantagem em certos domínios intensos computacionalmente, o \textbf{M2} se mostra uma esolha atraente para usuários comuns e pesquisadores.\cite{usability_ml}
+
+\subsection{Desempenho em Computação Científica}
+\hspace{+15pt}
+O desempenho dos chips M da Apple também tem chamado a atenção na área de \textbf{computação científica}. Estudos comparativos mostraram que o \textbf{M1} e o \textbf{M1 Ultra} superam GPUs especialzada para computação de alto desempenho como a \textbf{NVIDIA V100} em uma série de benchmarks , especialmente em tarefas que se beneficiam de memória compartilhada entre CPU e GPU, eliminando os gargalos de transferência de dados. Nos benchmarks SHOC, que cobre características diferentes níveis, como a performance da arquitetura projeto, execução de algoritmos e aplicações reais de kernel, o \textbf{M1 Ultra} destacou-se significativamente em tarefas como multiplicação de matrizes e transformadas rápidas de Fourier, mantendo uma superioridade de até duas ordens de magnitude em relação às GPUs da NVIDIA em alguns testes \cite{apple_silicon_scientific_computing}.
+Vale ressaltar que GPUs de alto desempenho podem consumir até 300W ou mais, o M1 e o M1 Ultra consomem entre 10W e 60W, uma diferença substancial.\cite{apple_silicon_scientific_computing}.
+
+\subsection{Aplicações em Aprendizado de Máquina}
+
+Os chips \textbf{M1} e \textbf{M2} também têm se mostrado altamente eficazes para aplicações de \textbf{machine learning} e \textbf{deep learning}. Em tarefas que envolvem redes neurais convolucionais e processamento de linguagem natural, os dispositivos equipados com esses chips foram comparáveis, e muitas vezes superiores, a laptops com processadores Intel. Graças à \textbf{Neural Engine} dedicada, os chips M são capazes de acelerar significativamente o treinamento de modelos de aprendizado profundo, tornando-os uma excelente escolha para pesquisadores e profissionais que trabalham com aprendizado de máquina no dia a dia \cite{usability_ml, apple_silicon_potential}.
 
 \section{Comparativo entre modelos}
 \hspace{+15pt}
@@ -111,6 +130,19 @@ Uma das inovações fundamentais dessa arquitetura é o conceito de memória uni
 
 \bibitem{apple_at_work} Apple Inc. (2021). \textbf{Apple at Work – M1 Overview}. Apple Business. Disponível em: https://www.apple.com/br/business/mac/pdf/Apple-at-Work-M1-Overview.pdf.
 
-\bibitem{hardware_acceleration} Chen, Y., \& Li, X. (2021). \textbf{Hardware Acceleration Techniques for Next-Generation Computing}. In S. Kumar \& P. Jones (Eds.), Emerging Technologies in Computing (pp. 509-523). Springer, Cham. Disponível em: https://link.springer.com/chapter/10.1007/978-3-030-93677-8\_48.
+\bibitem{hardware_acceleration} Chen, Y., \& Li, X. (2021). \textbf{Hardware Acceleration Techniques for Next-Generation Computing}. In S. Kumar \& P. Jones (Eds.), Emerging Technologies in Computing (pp. 509-523). Springer, Cham. Disponível em: https://link.springer.com/chapter/10.1007/978-3-030-93677-8\_48
+
+\bibitem{apple_m_vs_intel}
+Vaibhav Dalakoti and Diptamon Chakraborty, ``Apple M1 Chip vs Intel (X86),'' \textit{EPRA International Journal of Research and Development}, vol. 7, no. 5, May 2022, doi: 10.36713/epra2016.
+
+\bibitem{apple_silicon_potential}
+Karol Struniawski, Aleksandra Konopka, and Ryszard Kozera, ``Exploring Apple Silicon's Potential from Simulation and Optimization Perspective,'' \textit{Institute of Information Technology, Warsaw University of Life Sciences}, 2024, doi: 10.1007/978-3-031-63775-9\_3.
+
+\bibitem{usability_ml}
+David Kasperek, Pawel Antonowicz, Marek Baranowski, Marta Sokolowska, and Michal Podpora, ``Comparison of the Usability of Apple M2 and M1 Processors for Various Machine Learning Tasks,'' \textit{Sensors}, vol. 23, no. 5424, June 2023, doi: 10.3390/s23125424.
+
+\bibitem{apple_silicon_scientific_computing}
+Connor Kenyon and Collin Capano, ``Apple Silicon Performance in Scientific Computing,'' \textit{Center for Scientific Computation and Data Science Research}, November 2022, arXiv:2211.00720.
 \end{thebibliography}
 \end{document}
+
