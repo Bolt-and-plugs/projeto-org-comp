@@ -28,6 +28,7 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{geometry}
+\pgfplotsset{compat=1.18}
 
 \geometry{
   a4paper,         % Tamanho do papel
@@ -98,25 +99,43 @@ Esse avanço é uma parte essencial da estratégia da Apple para ter controle to
 
 Vale a consideração de que estes processadores só puderam ser desenvolvidos devido devido à arquitetura ARM e o Conjunto Reduzido de Instruções (RISC), tópicos que abordaremos no próximo capítulo.
 
-\section{Arquitetura e Organização}
-\hspace{+15pt} A série de chips M da Apple representa uma das arquiteturas de System-on-a-Chip (SoC) mais avançadas no mercado. Esses chips integram múltiplos componentes, como CPU, GPU, memória e unidades de processamento neural, em um único chip de silício, permitindo maior eficiência energética e uma integração mais profunda entre os componentes do hardware e o software.
-
-Os chips da série M possuem um grande número de transistores, com o M1 contando com 16 bilhões, sendo capaz de fazer até 11 trilhões de operações por segundo. Além disso, a GPU integrada nesses chips conta com 8 núcleos no M1 e 32 núcleos no M1 Max, permitindo um processamento gráfico robusto sem a necessidade de uma GPU dedicada. Mas atualmente, com o chip M3, a Apple deu mais um salto significativo em termos de potência e eficiência, trazendo uma quantidade ainda maior de transistores, ultrapassando os 25 bilhões, o que permite uma capacidade de processamento ainda mais avançada e otimizada para tarefas intensivas de cálculo. Além disso, a GPU integrada no M3 também foi aprimorada, contando com até 40 núcleos em sua versão mais poderosa, oferecendo desempenho gráfico excepcional.
-
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{./apple.jpeg}
     \caption{Chip M1}
     \label{fig:apple_m1}
 \end{figure}
 
+
+\section{Arquitetura ARM}
+\hspace{+15pt}
+A arquitetura ARM (para Advanced RISC Machines), é uma das principais arquiteturas baseadas no modelo de Conjunto Reduzido de Instruções (RISC), projetada para otimizar eficiência energética e desempenho. Desenvolvida inicialmente na década de 1980, a arquitetura ARM evoluiu para atender a necessidades de baixo consumo energético e alta eficiência em sistemas embarcados e dispositivos móveis.
+
+A filosofia RISC, na qual a ARM se fundamenta, propõe um conjunto de instruções simplificadas em comparação com arquiteturas de Conjunto Complexo de Instruções (CISC), como a arquitetura x86. Esse conjunto reduzido permite que cada instrução seja executada em um ciclo de clock, aumentando a eficiência do pipeline e possibilitando operações mais rápidas com menor dissipação de energia. De acordo com Hennessy e Patterson (2017), o design RISC é particularmente eficaz em tarefas que requerem alto throughput, já que uma instrução de ciclo único facilita o empilhamento de múltiplas operações em paralelo.
+
+Em termos técnicos, a arquitetura ARM apresenta características de um pipeline profundo e previsível, com múltiplos estágios para decodificação e execução das instruções, o que aumenta a velocidade de processamento e a previsibilidade do desempenho. Além disso, as versões mais recentes da arquitetura ARM, como a ARMv8 e ARMv9, introduzem suporte a instruções de 64 bits, aumentando a capacidade de endereçamento de memória e permitindo um maior desempenho em sistemas operacionais modernos e aplicações que exigem grandes volumes de dados. Em específico, abordaremos detalhes das aplicações da arquitetura ARM dentro da série de processadores M da Apple, destacando como a combinação de eficiência energética e desempenho robusto tem sido fundamental para a evolução desses chips e o impacto que eles têm tido no mercado de dispositivos comerciais e de alto desempenho.
+
+\newpage
+\section{Arquitetura e Organização}
+\hspace{+15pt} A série de chips M da Apple representa uma das arquiteturas de System-on-a-Chip (SoC) mais avançadas no mercado. Esses chips integram múltiplos componentes, como CPU, GPU, memória e unidades de processamento neural, em um único chip de silício, permitindo maior eficiência energética e uma integração mais profunda entre os componentes do hardware e o software.
+
+Os chips da série M possuem um grande número de transistores, com o M1 contando com 16 bilhões, sendo capaz de fazer até 11 trilhões de operações por segundo. Além disso, a GPU integrada nesses chips conta com 8 núcleos no M1 e 32 núcleos no M1 Max, permitindo um processamento gráfico robusto sem a necessidade de uma GPU dedicada. Mas atualmente, com o chip M3, a Apple deu mais um salto significativo em termos de potência e eficiência, trazendo uma quantidade ainda maior de transistores, ultrapassando os 25 bilhões, o que permite uma capacidade de processamento ainda mais avançada e otimizada para tarefas intensivas de cálculo. Além disso, a GPU integrada no M3 também foi aprimorada, contando com até 40 núcleos em sua versão mais poderosa, oferecendo desempenho gráfico excepcional.
+
 \subsection{Núcleos}
 \hspace{+15pt}
-Os chips da série M empregam uma arquitetura heterogênea de múltiplos núcleos - uma abordagem inspirada na arquitetura ARM big.LITTLE - combinando núcleos de alto desempenho (Firestorm) e núcleos de alta eficiência (Icestorm). Essa combinação permite que o sistema ajuste seu consumo energético com base na tarefa em execução, dando preferência para núcleos de alto desempenho em tarefas intensivas, enquanto, para operações mais leves, núcleos de alta eficiência energética são usados.
+Os chips da série M empregam uma arquitetura heterogênea de múltiplos núcleos - uma abordagem inspirada na arquitetura ARM big.LITTLE - combinando núcleos de alto desempenho (Firestorm) e núcleos de alta eficiência (Icestorm). Essa combinação permite que o sistema ajuste seu consumo energético com base na tarefa em execução, dando preferência para núcleos de alto desempenho em tarefas intensivas, enquanto, para operações mais leves, núcleos de alta eficiência energética são usados. 
+
 
 \subsection{Memória}
 \hspace{+15pt}
-Uma das inovações fundamentais dessa arquitetura é o conceito de memória unificada. Diferente dos designs tradicionais, nos quais CPU e GPU utilizam memórias separadas, a arquitetura dos chips M permite que todos os processadores acessem a mesma memória física. Isso reduz a necessidade de cópias redundantes de dados e melhora a comunicação entre CPU e GPU, resultando em um desempenho mais eficiente e menores tempos de resposta. Tal memória unificada também conta com uma largura de banda de 68.25 GB/s para o processador M1, podendo chegar até 400 GB/s para o M1 Max.
+Uma das inovações fundamentais dessa arquitetura é o conceito de memória unificada. Diferente dos designs tradicionais, nos quais CPU e GPU utilizam memórias separadas, a arquitetura dos chips M permite que todos os processadores acessem a mesma memória física. Isso reduz a necessidade de cópias redundantes de dados e melhora a comunicação entre CPU e GPU, resultando em um desempenho mais eficiente e menores tempos de resposta. Tal memória unificada também conta com uma largura de banda de 68.25 GB/s para o processador M1, podendo chegar até 400 GB/s para o M1 Max. Podemos observar a disposição da memória na figura [\ref{fig:apple_m1_ultra}].
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./apple-m1-ultra.png}
+    \caption{Apple M1 Ultra}
+    \label{fig:apple_m1_ultra}
+\end{figure}
 
 \newpage
 \section{Desempenho}
@@ -149,7 +168,6 @@ A série Apple M redefine o que significa integrar hardware e software em um ún
 Essa integração entre design de chip e software revela um caminho claro para o futuro: dispositivos onde o fluxo de dados é contínuo e otimizado, e onde cada operação ocorre sem atrito. Esse nível de controle sobre a arquitetura e o funcionamento dos chips não apenas transforma a experiência do usuário comum, mas também abre novas possibilidades para profissionais que exigem desempenho confiável e consistente. A série M não é apenas uma inovação incremental; é uma visão de como a tecnologia pode evoluir em um ciclo virtuoso de autonomia e aprimoramento, onde o desempenho se encontra com a eficiência, dando forma a um novo paradigma que influencia toda a indústria, além de redefinir o que esperamos dos dispositivos do futuro.
 
 
-
 \newpage
 \begin{thebibliography}{00}
 \bibitem{brain_like_computing} Ou, W., Xiao, S., Zhu, C., Han, W., \& Zhang, Q. (2022). \textbf{An overview of brain-like computing: Architecture, applications, and future trends}. Frontiers in Neurorobotics, 16, 1041108.
@@ -171,6 +189,9 @@ David Kasperek, Pawel Antonowicz, Marek Baranowski, Marta Sokolowska, and Michal
 
 \bibitem{apple_silicon_scientific_computing}
 Connor Kenyon and Collin Capano, ``Apple Silicon Performance in Scientific Computing,'' \textit{Center for Scientific Computation and Data Science Research}, November 2022, arXiv:2211.00720.
+
+\bibitem{Computer Architecture: A Quantitative Approach} 
+Hennessy, J. L., \& Patterson, D. A. (2017). Computer Architecture: A Quantitative Approach. Morgan Kaufmann.
 \end{thebibliography}
 \end{document}
 
